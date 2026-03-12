@@ -11,21 +11,21 @@
       margin: 0;
       padding: 0;
     }
-
+ 
     :root {
       --dark: #2e2e2e;
       --light: #e8e8e8;
       --mid: #6a6a6a;
       --line: rgba(232,232,232,0.12);
     }
-
+ 
     html, body {
       background-color: var(--dark);
       color: var(--light);
       font-family: 'Fira Code', monospace;
       min-height: 100vh;
     }
-
+ 
     .page {
       max-width: 680px;
       margin: 0 auto;
@@ -34,7 +34,7 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
+ 
     /* HEADER */
     header {
       padding-top: 60px;
@@ -42,12 +42,12 @@
       transform: translateY(12px);
       animation: fadeUp 0.7s ease forwards 0.1s;
     }
-
+ 
     .logo-wrap svg {
       height: 30px;
       width: auto;
     }
-
+ 
     /* HERO */
     .hero {
       padding: 100px 0 72px;
@@ -55,7 +55,7 @@
       transform: translateY(16px);
       animation: fadeUp 0.7s ease forwards 0.25s;
     }
-
+ 
     .tagline {
       font-size: clamp(24px, 3.6vw, 44px);
       font-weight: 600;
@@ -63,7 +63,7 @@
       line-height: 1.1;
       color: var(--light);
     }
-
+ 
     .descriptor {
       margin-top: 22px;
       font-size: clamp(12px, 1.2vw, 14px);
@@ -71,20 +71,20 @@
       color: var(--mid);
       letter-spacing: 0.04em;
     }
-
+ 
     /* DIVIDER */
     .divider {
       height: 1px;
       background: var(--line);
     }
-
+ 
     /* SIGNIFICANTS */
     .section {
       padding: 60px 0;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.4s;
     }
-
+ 
     .section-label {
       font-size: 11px;
       font-weight: 500;
@@ -93,11 +93,11 @@
       color: var(--mid);
       margin-bottom: 28px;
     }
-
+ 
     .significants {
       list-style: none;
     }
-
+ 
     .significants li {
       display: flex;
       align-items: baseline;
@@ -110,25 +110,25 @@
       color: rgba(232,232,232,0.5);
       transition: color 0.2s ease;
     }
-
+ 
     .significants li::before {
       content: '–';
       color: var(--mid);
       flex-shrink: 0;
       font-size: 10px;
     }
-
+ 
     .significants li a {
       color: inherit;
       text-decoration: none;
       transition: color 0.2s ease;
     }
-
+ 
     .significants li:hover,
     .significants li a:hover {
       color: rgba(232,232,232,0.9);
     }
-
+ 
     /* FOOTER */
     footer {
       padding: 48px 0 56px;
@@ -138,7 +138,7 @@
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.55s;
     }
-
+ 
     .contact-btn {
       display: inline-block;
       font-family: 'Fira Code', monospace;
@@ -153,12 +153,12 @@
       transition: border-color 0.2s ease, color 0.2s ease;
       align-self: flex-start;
     }
-
+ 
     .contact-btn:hover {
       border-color: rgba(232,232,232,0.7);
       color: var(--light);
     }
-
+ 
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -166,13 +166,13 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-
+ 
     .cities {
       display: flex;
       gap: 24px;
       flex-wrap: wrap;
     }
-
+ 
     .city {
       font-size: 10px;
       font-weight: 400;
@@ -180,17 +180,17 @@
       text-transform: uppercase;
       color: var(--mid);
     }
-
+ 
     .footer-right {
       font-size: 10px;
       letter-spacing: 0.06em;
       color: rgba(232,232,232,0.15);
     }
-
+ 
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-
+ 
     @media (max-width: 580px) {
       .page { padding: 0 28px; }
       header { padding-top: 44px; }
@@ -202,7 +202,7 @@
 </head>
 <body>
   <div class="page">
-
+ 
     <header>
       <div class="logo-wrap">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.46457 85.68949" aria-label="Bureau Cobo">
@@ -224,14 +224,14 @@
         </svg>
       </div>
     </header>
-
+ 
     <main class="hero">
       <h1 class="tagline">Tailoring moments,<br>moving industries.</h1>
       <p class="descriptor">Leaders' consultants, low signal rendez-vous.</p>
     </main>
-
+ 
     <div class="divider"></div>
-
+ 
     <section class="section">
       <p class="section-label">Significants</p>
       <ul class="significants">
@@ -254,11 +254,11 @@
         <li><a href="https://www.dydx.foundation/" target="_blank" rel="noopener">dYdX</a></li>
       </ul>
     </section>
-
+ 
     <div class="divider"></div>
-
+ 
     <footer>
-      <a class="contact-btn" href="/cdn-cgi/l/email-protection#244945564d454a4a4164465156414551474b464b0a474b49">Contact</a>
+      <a class="contact-btn" href="mailto:marianne@bureaucobo.com">Contact</a>
       <div class="footer-bottom">
         <nav class="cities" aria-label="Offices">
           <span class="city">Paris</span>
