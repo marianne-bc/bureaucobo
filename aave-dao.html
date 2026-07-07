@@ -14,27 +14,45 @@
     header { padding-top:60px; display:flex; align-items:center; justify-content:space-between; opacity:0; transform:translateY(12px); animation:fadeUp 0.6s ease forwards 0.05s; }
     .back { font-size:11px; letter-spacing:0.12em; color:var(--mid); text-decoration:none; transition:color 0.2s; }
     .back:hover { color:var(--fg); }
-    .mode-toggle { font-size:10px; letter-spacing:0.14em; color:var(--mid); cursor:pointer; background:none; border:none; font-family:'Fira Code',monospace; transition:color 0.2s; }
+    .mode-toggle { font-size:10px; color:var(--mid); cursor:pointer; background:none; border:none; font-family:'Fira Code',monospace; transition:color 0.2s; }
     .mode-toggle:hover { color:var(--fg); }
     .hero { padding:80px 0 48px; opacity:0; transform:translateY(16px); animation:fadeUp 0.6s ease forwards 0.2s; }
     .client-name { font-size:clamp(22px,3.2vw,38px); font-weight:600; letter-spacing:-0.02em; line-height:1.1; }
-    .meta { margin-top:16px; font-size:11px; letter-spacing:0.08em; color:var(--mid); }
     .icons { display:flex; gap:12px; margin-top:28px; align-items:center; }
     .icon-wrap { position:relative; display:flex; align-items:center; }
     .icon-wrap svg { width:14px; height:14px; stroke:var(--mid); fill:none; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; cursor:default; }
-    .icon-wrap .icon-label {
-      position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
-      font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bg);
-      background:var(--mid); padding:3px 6px; white-space:nowrap;
-      opacity:0; pointer-events:none; transition:opacity 0.15s ease;
-    }
+    .icon-wrap .icon-label { position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bg); background:var(--mid); padding:3px 6px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.15s ease; }
     .icon-wrap:hover .icon-label { opacity:1; }
     .divider { height:1px; background:var(--line); }
     .section { padding:48px 0; opacity:0; animation:fadeUp 0.6s ease forwards 0.35s; }
-    .section-label { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); margin-bottom:20px; }
-    .mission-text { font-size:13px; line-height:1.7; color:var(--fg); letter-spacing:0.02em; max-width:480px; }
-    .divider2 { height:1px; background:var(--line); }
-    .section2 { padding:48px 0; opacity:0; animation:fadeUp 0.6s ease forwards 0.45s; }
+    .section-label { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); margin-bottom:24px; }
+
+    /* event dropdowns */
+    .events { display:flex; flex-direction:column; gap:0; }
+    .event-item { border-bottom:1px solid var(--line); }
+    .event-trigger {
+      display:flex; align-items:baseline; justify-content:space-between;
+      padding:14px 0; cursor:default;
+      font-size:12px; letter-spacing:0.06em; color:var(--mid);
+      transition:color 0.2s;
+      user-select:none;
+    }
+    .event-trigger:hover { color:var(--fg); }
+    .event-date-loc { display:flex; gap:16px; }
+    .event-arrow { font-size:10px; transition:opacity 0.2s; opacity:0.4; }
+    .event-trigger:hover .event-arrow { opacity:1; }
+    .event-mission {
+      font-size:12px; line-height:1.7; color:var(--fg);
+      letter-spacing:0.02em;
+      max-height:0; overflow:hidden;
+      transition:max-height 0.3s ease, padding 0.3s ease;
+      padding:0;
+    }
+    .event-item:hover .event-mission {
+      max-height:80px;
+      padding:0 0 16px;
+    }
+
     footer { margin-top:auto; padding:48px 0 56px; opacity:0; animation:fadeUp 0.6s ease forwards 0.55s; }
     .footer-copy { font-size:10px; letter-spacing:0.06em; color:var(--line); }
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
@@ -50,15 +68,43 @@
 
     <main class="hero">
       <h1 class="client-name">AAVE DAO</h1>
-      <p class="meta">Bangkok, Thailand — 2024 / Singapore — 2025</p>
-      <div class="icons"><span class="icon-wrap"><svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg><span class="icon-label">dinner</span></span></div>
+      <div class="icons">
+        <span class="icon-wrap">
+          <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+          <span class="icon-label">dinner</span>
+        </span>
+      </div>
     </main>
 
     <div class="divider"></div>
 
     <section class="section">
       <p class="section-label">Mission /</p>
-      <p class="mission-text">Decentralized Finance core contributors supper.<br>Art Vault, Vault lunch.</p>
+      <div class="events">
+
+        <div class="event-item">
+          <div class="event-trigger">
+            <span class="event-date-loc">
+              <span>2024</span>
+              <span>Bangkok, Thailand</span>
+            </span>
+            <span class="event-arrow">↓</span>
+          </div>
+          <p class="event-mission">Decentralized Finance core contributors supper.</p>
+        </div>
+
+        <div class="event-item">
+          <div class="event-trigger">
+            <span class="event-date-loc">
+              <span>2025</span>
+              <span>Singapore</span>
+            </span>
+            <span class="event-arrow">↓</span>
+          </div>
+          <p class="event-mission">Art Vault, Vault lunch.</p>
+        </div>
+
+      </div>
     </section>
 
     <footer>
