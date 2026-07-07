@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>dYdX — Bureau Cobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#f0f0ec; --fg:#2e2e2e; --mid:#888880; --line:rgba(46,46,46,0.10); }
+    [data-theme="dark"] { --bg:#2e2e2e; --fg:#e8e8e8; --mid:#6a6a6a; --line:rgba(232,232,232,0.10); }
+    html,body { background:var(--bg); color:var(--fg); font-family:'Fira Code',monospace; min-height:100vh; transition:background-color 0.3s,color 0.3s; }
+    .page { max-width:680px; margin:0 auto; padding:0 48px; min-height:100vh; display:flex; flex-direction:column; }
+    header { padding-top:60px; display:flex; align-items:center; justify-content:space-between; opacity:0; transform:translateY(12px); animation:fadeUp 0.6s ease forwards 0.05s; }
+    .back { font-size:11px; letter-spacing:0.12em; color:var(--mid); text-decoration:none; transition:color 0.2s; }
+    .back:hover { color:var(--fg); }
+    .mode-toggle { font-size:10px; letter-spacing:0.14em; color:var(--mid); cursor:pointer; background:none; border:none; font-family:'Fira Code',monospace; transition:color 0.2s; }
+    .mode-toggle:hover { color:var(--fg); }
+    .hero { padding:100px 0 60px; opacity:0; transform:translateY(16px); animation:fadeUp 0.6s ease forwards 0.2s; }
+    .client-name { font-size:clamp(22px,3.2vw,38px); font-weight:600; letter-spacing:-0.02em; line-height:1.1; }
+    .icons { display:flex; gap:10px; margin-top:24px; align-items:center; }
+    .icons svg { width:14px; height:14px; stroke:var(--mid); fill:none; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
+    .divider { height:1px; background:var(--line); }
+    .section { padding:56px 0; opacity:0; animation:fadeUp 0.6s ease forwards 0.35s; }
+    .section-label { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); margin-bottom:24px; }
+    .ref-link { font-size:12px; letter-spacing:0.04em; color:var(--mid); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; transition:color 0.2s,border-color 0.2s; }
+    .ref-link:hover { color:var(--fg); border-color:var(--mid); }
+    .note { margin-top:32px; font-size:11px; line-height:1.7; color:var(--mid); letter-spacing:0.03em; max-width:480px; }
+    footer { margin-top:auto; padding:48px 0 56px; opacity:0; animation:fadeUp 0.6s ease forwards 0.5s; }
+    .footer-copy { font-size:10px; letter-spacing:0.06em; color:var(--line); }
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    @media(max-width:580px) { .page{padding:0 28px;} header{padding-top:44px;} .hero{padding:72px 0 48px;} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="back" href="/">← Bureau Cobo</a>
+      <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">○</button>
+    </header>
+
+    <main class="hero">
+      <h1 class="client-name">dYdX</h1>
+      <div class="icons"><svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg><svg viewBox="0 0 12 12"><path d="M4 2 L2 2 L2 10 L4 10"/></svg><svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </main>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">Reference</p>
+      <a class="ref-link" href="https://www.dydx.foundation/" target="_blank" rel="noopener">dydx.foundation</a>
+      
+    </section>
+
+    <footer>
+      <span class="footer-copy">© 2026 Bureau Cobo</span>
+    </footer>
+  </div>
+  <script>
+    function toggleMode() {
+      const t = document.documentElement.getAttribute('data-theme');
+      const n = t==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',n);
+      localStorage.setItem('bc-theme',n);
+      document.getElementById('modeToggle').textContent=n==='dark'?'●':'○';
+    }
+    const s=localStorage.getItem('bc-theme');
+    if(s){document.documentElement.setAttribute('data-theme',s);document.getElementById('modeToggle').textContent=s==='dark'?'●':'○';}
+  </script>
+</body>
+</html>
