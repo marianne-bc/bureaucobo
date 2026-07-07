@@ -200,7 +200,11 @@
       gap: 16px;
     }
 
-    .cities { display: flex; gap: 24px; flex-wrap: wrap; }
+
+    .cities { display: flex; flex-direction: column; gap: 8px; }
+    .cities-row { display: flex; gap: 16px; align-items: baseline; }
+    .city-sep { font-size: 10px; color: var(--line); }
+    .city-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--line); margin-right: 4px; }
 
     .city {
       font-size: 10px;
@@ -461,11 +465,19 @@
       <a class="contact-btn" href="mailto:marianne@bureaucobo.com">Contact</a>
       <div class="footer-bottom">
         <nav class="cities" aria-label="Offices">
-          <span class="city">Paris</span>
-          <span class="city">Brussels</span>
-          <span class="city">New York</span>
-          <span class="city">Mexico</span>
-          <span class="city">Lisbon</span>
+          <div class="cities-row">
+            <span class="city">Global</span>
+            <span class="city-sep">/</span>
+            <span class="city">Est. 2023</span>
+          </div>
+          <div class="cities-row">
+            <span class="city-label">Rooted</span>
+            <span class="city">Paris</span>
+            <span class="city">New York</span>
+            <span class="city">Brussels</span>
+            <span class="city">Lisbon</span>
+            <span class="city">Mexico</span>
+          </div>
         </nav>
         <span class="footer-right">© 2026 Bureau Cobo</span>
       </div>

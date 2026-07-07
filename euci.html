@@ -16,20 +16,29 @@
     .back:hover { color:var(--fg); }
     .mode-toggle { font-size:10px; letter-spacing:0.14em; color:var(--mid); cursor:pointer; background:none; border:none; font-family:'Fira Code',monospace; transition:color 0.2s; }
     .mode-toggle:hover { color:var(--fg); }
-    .hero { padding:100px 0 60px; opacity:0; transform:translateY(16px); animation:fadeUp 0.6s ease forwards 0.2s; }
+    .hero { padding:80px 0 48px; opacity:0; transform:translateY(16px); animation:fadeUp 0.6s ease forwards 0.2s; }
     .client-name { font-size:clamp(22px,3.2vw,38px); font-weight:600; letter-spacing:-0.02em; line-height:1.1; }
-    .icons { display:flex; gap:10px; margin-top:24px; align-items:center; }
-    .icons svg { width:14px; height:14px; stroke:var(--mid); fill:none; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
+    .meta { margin-top:16px; font-size:11px; letter-spacing:0.08em; color:var(--mid); }
+    .icons { display:flex; gap:12px; margin-top:28px; align-items:center; }
+    .icon-wrap { position:relative; display:flex; align-items:center; }
+    .icon-wrap svg { width:14px; height:14px; stroke:var(--mid); fill:none; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; cursor:default; }
+    .icon-wrap .icon-label {
+      position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
+      font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bg);
+      background:var(--mid); padding:3px 6px; white-space:nowrap;
+      opacity:0; pointer-events:none; transition:opacity 0.15s ease;
+    }
+    .icon-wrap:hover .icon-label { opacity:1; }
     .divider { height:1px; background:var(--line); }
-    .section { padding:56px 0; opacity:0; animation:fadeUp 0.6s ease forwards 0.35s; }
-    .section-label { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); margin-bottom:24px; }
-    .ref-link { font-size:12px; letter-spacing:0.04em; color:var(--mid); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; transition:color 0.2s,border-color 0.2s; }
-    .ref-link:hover { color:var(--fg); border-color:var(--mid); }
-    .note { margin-top:32px; font-size:11px; line-height:1.7; color:var(--mid); letter-spacing:0.03em; max-width:480px; }
-    footer { margin-top:auto; padding:48px 0 56px; opacity:0; animation:fadeUp 0.6s ease forwards 0.5s; }
+    .section { padding:48px 0; opacity:0; animation:fadeUp 0.6s ease forwards 0.35s; }
+    .section-label { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); margin-bottom:20px; }
+    .mission-text { font-size:13px; line-height:1.7; color:var(--fg); letter-spacing:0.02em; max-width:480px; }
+    .divider2 { height:1px; background:var(--line); }
+    .section2 { padding:48px 0; opacity:0; animation:fadeUp 0.6s ease forwards 0.45s; }
+    footer { margin-top:auto; padding:48px 0 56px; opacity:0; animation:fadeUp 0.6s ease forwards 0.55s; }
     .footer-copy { font-size:10px; letter-spacing:0.06em; color:var(--line); }
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
-    @media(max-width:580px) { .page{padding:0 28px;} header{padding-top:44px;} .hero{padding:72px 0 48px;} }
+    @media(max-width:580px) { .page{padding:0 28px;} header{padding-top:44px;} .hero{padding:56px 0 36px;} }
   </style>
 </head>
 <body>
@@ -41,15 +50,15 @@
 
     <main class="hero">
       <h1 class="client-name">EUCI</h1>
-      <div class="icons"><svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg></div>
+      <p class="meta">Brussels, Belgium — 2023</p>
+      <div class="icons"><span class="icon-wrap"><svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg><span class="icon-label">conference</span></span></div>
     </main>
 
     <div class="divider"></div>
 
     <section class="section">
-      <p class="section-label">Reference</p>
-      <a class="ref-link" href="https://euci.eu" target="_blank" rel="noopener">euci.eu</a>
-      
+      <p class="section-label">Mission /</p>
+      <p class="mission-text">Community good at heart, getting Europe onboard.</p>
     </section>
 
     <footer>
