@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Brief — Bureau Cobo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --muted: #777777;
+    --border: #000000;
+    --border-light: #d0d0d0;
+    --selected-bg: #000000;
+    --selected-text: #ffffff;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* Nav */
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 40px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-back {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-back:hover { opacity: 0.5; }
+  .nav-circle {
+    font-size: 18px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  /* Header */
+  .site-header {
+    padding: 64px 40px 48px;
+    border-bottom: 1px solid var(--border-light);
+    max-width: 720px;
+  }
+  .site-header h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+  }
+  .site-header .tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* Form wrapper */
+  .form-wrap {
+    max-width: 720px;
+    padding: 0 40px 100px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 52px 0 0;
+    border-top: 1px solid var(--border-light);
+    margin-top: 52px;
+  }
+  .section:first-child {
+    margin-top: 0;
+    border-top: none;
+  }
+  .section-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  /* Fields */
+  .field {
+    margin-bottom: 32px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 560px) {
+    .field-row { grid-template-columns: 1fr; }
+    .site-header, .form-wrap, .site-nav { padding-left: 24px; padding-right: 24px; }
+    .site-header h1 { font-size: 34px; }
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  /* Inputs — bottom border only */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+    font-size: 15px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 300;
+    padding: 10px 0;
+    outline: none;
+    transition: border-color 0.15s;
+    border-radius: 0;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--border);
+  }
+  input::placeholder, textarea::placeholder {
+    color: #bbb;
+    font-weight: 300;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.6;
+    display: block;
+  }
+
+  /* Pills / choice items */
+  .choice-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .choice-group.column {
+    flex-direction: column;
+    gap: 0;
+  }
+  .choice-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-light);
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    transition: border-color 0.1s, background 0.1s, color 0.1s;
+    user-select: none;
+    line-height: 1.4;
+  }
+  .choice-item:hover {
+    border-color: var(--border);
+  }
+  .choice-item input[type="radio"],
+  .choice-item input[type="checkbox"] {
+    width: auto;
+    border: none;
+    flex-shrink: 0;
+    accent-color: var(--text);
+  }
+  .choice-item.selected {
+    background: var(--selected-bg);
+    color: var(--selected-text);
+    border-color: var(--selected-bg);
+  }
+
+  /* Budget grid */
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  @media (max-width: 480px) { .budget-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* Hint */
+  .hint {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  /* Conditional */
+  .conditional { display: none; margin-top: 24px; }
+  .conditional.visible { display: block; }
+
+  /* Submit */
+  .submit-wrap {
+    margin-top: 60px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .submit-btn {
+    display: inline-block;
+    background: var(--text);
+    border: 1px solid var(--text);
+    color: var(--bg);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    border-radius: 0;
+  }
+  .submit-btn:hover {
+    background: transparent;
+    color: var(--text);
+  }
+  .submit-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Success screen */
+  .success-screen {
+    display: none;
+    padding: 100px 40px;
+    max-width: 720px;
+  }
+  .success-screen.visible { display: block; }
+  .success-screen .circle {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 32px;
+    color: var(--muted);
+  }
+  .success-screen h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .success-screen p {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 28px 40px;
+    border-top: 1px solid var(--border-light);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .site-footer a:hover { color: var(--text); }
+
+  /* Hide native radio/checkbox when inside choice-item */
+  .choice-item input[type="radio"],
+  .choice-item input[type="checkbox"] {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://bureaucobo.com" class="nav-back">← Bureau Cobo</a>
+  <span class="nav-circle">○</span>
+</nav>
+
+<header class="site-header">
+  <h1>Event Brief</h1>
+  <p class="tagline">fuel the COBO engine</p>
+</header>
+
+<main class="form-wrap" id="formWrap">
+  <form id="briefForm" novalidate>
+
+    <!-- SECTION 1: You -->
+    <div class="section">
+      <span class="section-label">/ About you</span>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Full name">
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Organisation or project">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="role">Your role</label>
+          <input type="text" id="role" name="role" placeholder="e.g. Head of Marketing">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Event -->
+    <div class="section">
+      <span class="section-label">/ The event</span>
+
+      <div class="field">
+        <label>Event type</label>
+        <div class="choice-group" id="eventTypeGroup">
+          <label class="choice-item">
+            <input type="radio" name="event_type" value="Private dinner"> Private dinner
+          </label>
+          <label class="choice-item">
+            <input type="radio" name="event_type" value="Cocktail reception"> Cocktail reception
+          </label>
+          <label class="choice-item">
+            <input type="radio" name="event_type" value="Conference side event"> Conference side event
+          </label>
+          <label class="choice-item">
+            <input type="radio" name="event_type" value="Corporate retreat"> Corporate retreat
+          </label>
+          <label class="choice-item">
+            <input type="radio" name="event_type" value="Product launch"> Product launch
+          </label>
+          <label class="choice-item">
+            <input type="radio" name="event_type" value="Other"> Other
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="event_name">Event name (if you have one)</label>
+        <input type="text" id="event_name" name="event_name" placeholder="e.g. The Founders Dinner">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="city">City / Country</label>
+          <input type="text" id="city" name="city" placeholder="e.g. Paris, France">
+        </div>
+        <div class="field">
+          <label for="pax">Number of guests</label>
+          <input type="number" id="pax" name="pax" placeholder="e.g. 60" min="1">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="event_date">Preferred date(s)</label>
+          <input type="text" id="event_date" name="event_date" placeholder="e.g. June 12–13, 2026">
+        </div>
+        <div class="field">
+          <label>Is the date flexible?</label>
+          <div class="choice-group">
+            <label class="choice-item"><input type="radio" name="date_flexible" value="Yes"> Yes</label>
+            <label class="choice-item"><input type="radio" name="date_flexible" value="No"> No</label>
+            <label class="choice-item"><input type="radio" name="date_flexible" value="Somewhat"> Somewhat</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: The experience -->
+    <div class="section">
+      <span class="section-label">/ The experience</span>
+
+      <div class="field">
+        <label for="occasion">What's the occasion and what do you want guests to feel?</label>
+        <textarea id="occasion" name="occasion" placeholder="e.g. End-of-conference dinner for our top 60 investors. Intimate, warm, no corporate vibes — more like a great dinner party than a brand event."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Format</label>
+        <div class="choice-group">
+          <label class="choice-item"><input type="radio" name="format" value="Seated dinner"> Seated dinner</label>
+          <label class="choice-item"><input type="radio" name="format" value="Standing cocktail"> Standing cocktail</label>
+          <label class="choice-item"><input type="radio" name="format" value="Mixed (cocktail then seated)"> Mixed</label>
+          <label class="choice-item"><input type="radio" name="format" value="No preference"> No preference</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Indoor / outdoor</label>
+        <div class="choice-group">
+          <label class="choice-item"><input type="radio" name="indoor_outdoor" value="Indoor"> Indoor</label>
+          <label class="choice-item"><input type="radio" name="indoor_outdoor" value="Outdoor"> Outdoor</label>
+          <label class="choice-item"><input type="radio" name="indoor_outdoor" value="Both"> Both / no preference</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="must_haves">Must-haves</label>
+        <textarea id="must_haves" name="must_haves" style="min-height:72px;" placeholder="e.g. Private space, DJ setup, rooftop or terrace, specific neighbourhood, parking..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="avoid">Anything to avoid</label>
+        <textarea id="avoid" name="avoid" style="min-height:72px;" placeholder="e.g. No hotel ballrooms, no set menus, no start times before 8pm..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="dietary">Dietary requirements</label>
+        <input type="text" id="dietary" name="dietary" placeholder="e.g. 10 vegetarians, 2 halal, severe nut allergy">
+      </div>
+    </div>
+
+    <!-- SECTION 4: Invitations & RSVP -->
+    <div class="section">
+      <span class="section-label">/ Invitations & RSVP</span>
+
+      <div class="field">
+        <label>Invitation format</label>
+        <div class="choice-group" id="inviteGroup">
+          <label class="choice-item"><input type="radio" name="invite_format" value="Printed & physically mailed"> Printed & mailed</label>
+          <label class="choice-item"><input type="radio" name="invite_format" value="Digital only"> Digital only</label>
+          <label class="choice-item"><input type="radio" name="invite_format" value="Both printed and digital"> Both</label>
+          <label class="choice-item"><input type="radio" name="invite_format" value="Not needed"> Not needed</label>
+        </div>
+      </div>
+
+      <div class="conditional" id="printedDetails">
+        <div class="field-row">
+          <div class="field">
+            <label>Mailing list ready?</label>
+            <div class="choice-group">
+              <label class="choice-item"><input type="radio" name="mailing_list" value="Yes, ready"> Yes, ready</label>
+              <label class="choice-item"><input type="radio" name="mailing_list" value="Still collecting"> Still collecting</label>
+              <label class="choice-item"><input type="radio" name="mailing_list" value="Need help"> Need help</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="print_notes">Print & design notes</label>
+            <textarea id="print_notes" name="print_notes" style="min-height:60px;" placeholder="e.g. Wax seal, envelope liner, specific paper stock, brand guidelines..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>RSVP type</label>
+        <div class="choice-group" id="rsvpGroup">
+          <label class="choice-item"><input type="radio" name="rsvp_type" value="Named RSVP (personalised per guest)"> Named RSVP</label>
+          <label class="choice-item"><input type="radio" name="rsvp_type" value="Simple yes / no RSVP"> Simple yes / no</label>
+          <label class="choice-item"><input type="radio" name="rsvp_type" value="Digital RSVP platform"> Digital platform</label>
+          <label class="choice-item"><input type="radio" name="rsvp_type" value="No RSVP needed"> No RSVP needed</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="rsvp_notes">RSVP notes</label>
+        <input type="text" id="rsvp_notes" name="rsvp_notes" placeholder="e.g. Guest list of 80, need dietary info on RSVP, deadline 2 weeks before...">
+      </div>
+    </div>
+
+    <!-- SECTION 5: Budget -->
+    <div class="section">
+      <span class="section-label">/ Budget</span>
+
+      <div class="field">
+        <label>Approximate total budget</label>
+        <div class="budget-grid" id="budgetGroup">
+          <label class="choice-item"><input type="radio" name="budget" value="Under €10,000"> Under €10K</label>
+          <label class="choice-item"><input type="radio" name="budget" value="€10,000 – €20,000"> €10K – €20K</label>
+          <label class="choice-item"><input type="radio" name="budget" value="€20,000 – €40,000"> €20K – €40K</label>
+          <label class="choice-item"><input type="radio" name="budget" value="€40,000 – €80,000"> €40K – €80K</label>
+          <label class="choice-item"><input type="radio" name="budget" value="€80,000 – €150,000"> €80K – €150K</label>
+          <label class="choice-item"><input type="radio" name="budget" value="€150,000+"> €150K+</label>
+        </div>
+        <p class="hint">Bureau Cobo fee (15% of total, or €3,500 fixed for budgets under €25K) is included in the proposal we'll send you.</p>
+      </div>
+
+      <div class="field">
+        <label for="budget_notes">Budget notes</label>
+        <input type="text" id="budget_notes" name="budget_notes" placeholder="e.g. Excluding flights and accommodation, fixed ceiling of €35K all-in">
+      </div>
+    </div>
+
+    <!-- SECTION 6: Gifts & Branding -->
+    <div class="section">
+      <span class="section-label">/ Guest gift & branding</span>
+
+      <div class="field">
+        <label>Guest gift?</label>
+        <div class="choice-group" id="giftGroup">
+          <label class="choice-item"><input type="radio" name="gift" value="Yes"> Yes</label>
+          <label class="choice-item"><input type="radio" name="gift" value="No"> No</label>
+          <label class="choice-item"><input type="radio" name="gift" value="Not sure"> Not sure yet</label>
+        </div>
+      </div>
+
+      <div class="conditional" id="giftDetails">
+        <div class="field">
+          <label>Gift type <span style="font-size:10px;text-transform:none;letter-spacing:0;color:#aaa">— select all that apply</span></label>
+          <div class="choice-group" id="giftTypeGroup">
+            <label class="choice-item"><input type="checkbox" name="gift_type" value="Something local to the city"> Something local</label>
+            <label class="choice-item"><input type="checkbox" name="gift_type" value="Branded merch"> Branded merch</label>
+            <label class="choice-item"><input type="checkbox" name="gift_type" value="Food or drink"> Food or drink</label>
+            <label class="choice-item"><input type="checkbox" name="gift_type" value="Object / lifestyle item"> Object / lifestyle</label>
+            <label class="choice-item"><input type="checkbox" name="gift_type" value="Experience"> Experience</label>
+            <label class="choice-item"><input type="checkbox" name="gift_type" value="Open to suggestions"> Open to suggestions</label>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Budget per guest</label>
+            <div class="choice-group">
+              <label class="choice-item"><input type="radio" name="gift_budget" value="Under €10"> Under €10</label>
+              <label class="choice-item"><input type="radio" name="gift_budget" value="€10–€20"> €10–€20</label>
+              <label class="choice-item"><input type="radio" name="gift_budget" value="€20–€40"> €20–€40</label>
+              <label class="choice-item"><input type="radio" name="gift_budget" value="€40–€80"> €40–€80</label>
+              <label class="choice-item"><input type="radio" name="gift_budget" value="No constraint"> No constraint</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Custom branding on gift?</label>
+            <div class="choice-group">
+              <label class="choice-item"><input type="radio" name="gift_branding" value="Yes"> Yes</label>
+              <label class="choice-item"><input type="radio" name="gift_branding" value="No"> No</label>
+              <label class="choice-item"><input type="radio" name="gift_branding" value="Not sure"> Not sure</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="gift_notes">Gift notes</label>
+          <textarea id="gift_notes" name="gift_notes" style="min-height:60px;" placeholder="e.g. Eco-friendly preferred, no leather, must travel well in carry-on..."></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Branded elements needed?</label>
+        <div class="choice-group" id="brandingGroup">
+          <label class="choice-item"><input type="radio" name="branding" value="Yes"> Yes</label>
+          <label class="choice-item"><input type="radio" name="branding" value="No"> No</label>
+          <label class="choice-item"><input type="radio" name="branding" value="Not sure"> Not sure yet</label>
+        </div>
+      </div>
+
+      <div class="conditional" id="brandingDetails">
+        <div class="field">
+          <label for="branding_notes">Branding requirements</label>
+          <textarea id="branding_notes" name="branding_notes" style="min-height:72px;" placeholder="e.g. Custom menus, logo on backdrop, branded welcome drinks, custom cocktail names..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7: Anything else -->
+    <div class="section">
+      <span class="section-label">/ Anything else</span>
+
+      <div class="field">
+        <label for="other">Anything we should know?</label>
+        <textarea id="other" name="other" placeholder="Special guests, previous events you loved, sensitivities, hard deadlines, other constraints..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="heard">How did you hear about Bureau Cobo?</label>
+        <input type="text" id="heard" name="heard" placeholder="e.g. Referral from Connor, saw you at TOKEN2049...">
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button type="submit" class="submit-btn">Send brief</button>
+      <p class="submit-note">We'll come back within 48 hours with venue options and a first budget proposal.</p>
+    </div>
+
+  </form>
+
+  <div class="success-screen" id="successScreen">
+    <span class="circle">○</span>
+    <h2>Brief received — thank you.</h2>
+    <p>We'll review your brief and come back to you within 48 hours with a first set of venue options and a budget proposal.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>Bureau Cobo &nbsp;·&nbsp; Est. 2023</span>
+  <a href="mailto:marianne@bureaucobo.com">marianne@bureaucobo.com</a>
+</footer>
+
+<script>
+  // Radio / checkbox pill highlight
+  document.querySelectorAll('.choice-group').forEach(group => {
+    group.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        group.querySelectorAll('.choice-item').forEach(item => item.classList.remove('selected'));
+        radio.closest('.choice-item').classList.add('selected');
+      });
+    });
+  });
+
+  document.querySelectorAll('.choice-group input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('.choice-item').classList.toggle('selected', cb.checked);
+    });
+  });
+
+  // Conditional: gift details
+  document.querySelectorAll('input[name="gift"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('giftDetails').classList.toggle('visible', r.value === 'Yes');
+    });
+  });
+
+  // Conditional: branding details
+  document.querySelectorAll('input[name="branding"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('brandingDetails').classList.toggle('visible', r.value === 'Yes');
+    });
+  });
+
+  // Conditional: printed invite details
+  document.querySelectorAll('input[name="invite_format"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const show = r.value === 'Printed & physically mailed' || r.value === 'Both printed and digital';
+      document.getElementById('printedDetails').classList.toggle('visible', show);
+    });
+  });
+
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz5_KGNOF6fhKuAW1RTM_aBrO9bA2UdkOx9Gx3R8IwIPGB5d9jAzUvcI1BOA9aQrVFBtg/exec';
+
+  document.getElementById('briefForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const get = id => document.getElementById(id) ? document.getElementById(id).value.trim() : '';
+    const getRadio = name => {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '';
+    };
+    const getCheckboxValues = name =>
+      [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value).join(', ');
+
+    const payload = {
+      name:           get('name'),
+      company:        get('company'),
+      email:          get('email'),
+      role:           get('role'),
+      event_type:     getRadio('event_type'),
+      event_name:     get('event_name'),
+      city:           get('city'),
+      pax:            get('pax'),
+      event_date:     get('event_date'),
+      date_flexible:  getRadio('date_flexible'),
+      occasion:       get('occasion'),
+      format:         getRadio('format'),
+      indoor_outdoor: getRadio('indoor_outdoor'),
+      must_haves:     get('must_haves'),
+      avoid:          get('avoid'),
+      dietary:        get('dietary'),
+      invite_format:  getRadio('invite_format'),
+      mailing_list:   getRadio('mailing_list'),
+      print_notes:    get('print_notes'),
+      rsvp_type:      getRadio('rsvp_type'),
+      rsvp_notes:     get('rsvp_notes'),
+      budget:         getRadio('budget'),
+      budget_notes:   get('budget_notes'),
+      gift:           getRadio('gift'),
+      gift_type:      getCheckboxValues('gift_type'),
+      gift_budget:    getRadio('gift_budget'),
+      gift_branding:  getRadio('gift_branding'),
+      gift_notes:     get('gift_notes'),
+      branding:       getRadio('branding'),
+      branding_notes: get('branding_notes'),
+      other:          get('other'),
+      heard:          get('heard')
+    };
+
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    document.getElementById('briefForm').style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  });
+</script>
+</body>
+</html>
