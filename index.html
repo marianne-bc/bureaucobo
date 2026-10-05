@@ -7,15 +7,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --bg: #f0f0ec;
       --fg: #2e2e2e;
-      --mid: #888880;
+      --mid: #6b6b63;
       --line: rgba(46,46,46,0.10);
       --icon: #aaaaaa;
     }
-
+ 
     [data-theme="dark"] {
       --bg: #2e2e2e;
       --fg: #e8e8e8;
@@ -23,7 +23,7 @@
       --line: rgba(232,232,232,0.10);
       --icon: #666666;
     }
-
+ 
     html, body {
       background-color: var(--bg);
       color: var(--fg);
@@ -31,7 +31,7 @@
       min-height: 100vh;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
+ 
     .page {
       max-width: 680px;
       margin: 0 auto;
@@ -40,7 +40,7 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
+ 
     header {
       padding-top: 60px;
       display: flex;
@@ -50,10 +50,10 @@
       transform: translateY(12px);
       animation: fadeUp 0.7s ease forwards 0.1s;
     }
-
+ 
     .logo-wrap svg { height: 30px; width: auto; }
     .logo-wrap svg path, .logo-wrap svg rect { fill: var(--fg); transition: fill 0.3s ease; }
-
+ 
     /* mode toggle */
     .mode-toggle {
       font-size: 10px;
@@ -68,38 +68,39 @@
       user-select: none;
     }
     .mode-toggle:hover { color: var(--fg); }
-
+ 
     .hero {
       padding: 100px 0 72px;
       opacity: 0;
       transform: translateY(16px);
       animation: fadeUp 0.7s ease forwards 0.25s;
     }
-
+ 
     .tagline {
-      font-size: clamp(24px, 3.6vw, 44px);
+      font-size: clamp(26px, 3.8vw, 48px);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.1;
       color: var(--fg);
     }
-
+ 
     .descriptor {
       margin-top: 22px;
-      font-size: clamp(12px, 1.2vw, 14px);
+      font-size: clamp(13px, 1.4vw, 15px);
       font-weight: 400;
       color: var(--mid);
       letter-spacing: 0.04em;
+      line-height: 1.6;
     }
-
+ 
     .divider { height: 1px; background: var(--line); }
-
+ 
     .section {
       padding: 60px 0;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.4s;
     }
-
+ 
     .section-label {
       font-size: 11px;
       font-weight: 500;
@@ -108,9 +109,9 @@
       color: var(--mid);
       margin-bottom: 28px;
     }
-
+ 
     .significants { list-style: none; }
-
+ 
     .significants li {
       display: flex;
       align-items: center;
@@ -119,28 +120,28 @@
       border-bottom: 1px solid var(--line);
       position: relative;
     }
-
+ 
     .significants li::before {
       content: '–';
       color: var(--mid);
       flex-shrink: 0;
       font-size: 10px;
     }
-
+ 
     .sig-name {
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.05em;
-      color: rgba(46,46,46,0.55);
+      color: rgba(46,46,46,0.72);
       text-decoration: none;
       transition: color 0.2s ease;
       flex: 1;
     }
-
-    [data-theme="dark"] .sig-name { color: rgba(232,232,232,0.5); }
-
+ 
+    [data-theme="dark"] .sig-name { color: rgba(232,232,232,0.65); }
+ 
     .significants li:hover .sig-name { color: var(--fg); }
-
+ 
     /* icon row */
     .sig-icons {
       display: flex;
@@ -150,9 +151,9 @@
       align-items: center;
       flex-shrink: 0;
     }
-
+ 
     .significants li:hover .sig-icons { opacity: 1; }
-
+ 
     .sig-icons svg {
       width: 12px;
       height: 12px;
@@ -163,9 +164,9 @@
       stroke-linejoin: round;
       transition: stroke 0.2s ease;
     }
-
+ 
     .significants li:hover .sig-icons svg { stroke: var(--mid); }
-
+ 
     footer {
       padding: 48px 0 56px;
       display: flex;
@@ -174,7 +175,7 @@
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.55s;
     }
-
+ 
     .contact-btn {
       display: inline-block;
       font-family: 'Fira Code', monospace;
@@ -189,9 +190,9 @@
       transition: border-color 0.2s ease, color 0.2s ease;
       align-self: flex-start;
     }
-
+ 
     .contact-btn:hover { border-color: var(--mid); }
-
+ 
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -199,13 +200,13 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-
-
+ 
+ 
     .cities { display: flex; flex-direction: column; gap: 8px; }
     .cities-row { display: flex; gap: 16px; align-items: baseline; }
     .city-sep { font-size: 10px; color: var(--line); }
     .city-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--line); margin-right: 4px; }
-
+ 
     .city {
       font-size: 10px;
       font-weight: 400;
@@ -213,15 +214,15 @@
       text-transform: uppercase;
       color: var(--mid);
     }
-
+ 
     .footer-right {
       font-size: 10px;
       letter-spacing: 0.06em;
       color: var(--line);
     }
-
+ 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
+ 
     @media (max-width: 580px) {
       .page { padding: 0 28px; }
       header { padding-top: 44px; }
@@ -229,7 +230,7 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .cities { gap: 14px; }
     }
-
+ 
     /* modal overlay */
     .mode-overlay {
       position: fixed;
@@ -244,23 +245,24 @@
       font-family: 'Fira Code', monospace;
       transition: opacity 0.4s ease;
     }
-
+ 
     .mode-overlay.hidden { display: none; }
-
+ 
     .mode-question {
       font-size: clamp(13px, 2vw, 16px);
       color: var(--mid);
       letter-spacing: 0.04em;
+      line-height: 1.6;
       text-align: center;
       line-height: 1.6;
       max-width: 340px;
     }
-
+ 
     .mode-choices {
       display: flex;
       gap: 24px;
     }
-
+ 
     .mode-choice {
       font-family: 'Fira Code', monospace;
       font-size: 11px;
@@ -273,12 +275,12 @@
       cursor: pointer;
       transition: border-color 0.2s ease;
     }
-
+ 
     .mode-choice:hover { border-color: var(--mid); }
   </style>
 </head>
 <body>
-
+ 
   <!-- mode modal -->
   <div class="mode-overlay" id="modeOverlay">
     <p class="mode-question">are you a dev<br>or is it past 11pm?</p>
@@ -287,7 +289,7 @@
       <button class="mode-choice" onclick="setMode('light')">no</button>
     </div>
   </div>
-
+ 
   <div class="page">
     <header>
       <div class="logo-wrap">
@@ -311,69 +313,74 @@
       </div>
       <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">○</button>
     </header>
-
+ 
     <main class="hero">
       <h1 class="tagline">Tailoring moments,<br>moving industries.</h1>
-      <p class="descriptor">No noise.<br>_rendezvous.</p>
+      <p class="descriptor">low signal rendez-vous.</p>
     </main>
-
+ 
     <div class="divider"></div>
-
+ 
     <section class="section">
       <p class="section-label">Significants</p>
       <ul class="significants">
-
+ 
         <li>
           <a class="sig-name" href="aave-dao.html">AAVE DAO</a>
           <span class="sig-icons">
+            <!-- dinner: horizontal line -->
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="aave-labs.html">AAVE Labs</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="buidl-asia.html">BUIDL Asia</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="buidl-europe.html">BUIDL Europe</a>
           <span class="sig-icons">
+            <!-- conference: dot grid -->
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
+            <!-- curation: bracket -->
             <svg viewBox="0 0 12 12"><path d="M4 2 L2 2 L2 10 L4 10"/></svg>
+            <!-- dinner -->
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="blockchain-for-good.html">Blockchain for Good</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="bpi-france.html">BPI France</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="conduit.html">Conduit</a>
           <span class="sig-icons">
+            <!-- retreat: empty circle -->
             <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="dromos-lab.html">Dromos Lab</a>
           <span class="sig-icons">
@@ -381,21 +388,21 @@
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="euci.html">EUCI</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="eva.html">EVA — Ethereum Validator Association</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="ethcc.html">EthCC — Ethereum France</a>
           <span class="sig-icons">
@@ -403,36 +410,37 @@
             <svg viewBox="0 0 12 12"><path d="M4 2 L2 2 L2 10 L4 10"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="etherealize.html">Etherealize</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="kaiko.html">Kaiko</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="near.html">NEAR Foundation</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+            <!-- party: diagonal slash -->
             <svg viewBox="0 0 12 12"><line x1="2" y1="10" x2="10" y2="2"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="open-source-ai-summit.html">Open Source AI Summit</a>
           <span class="sig-icons">
             <svg viewBox="0 0 12 12"><circle cx="2" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="0.8" fill="currentColor" stroke="none"/><circle cx="2" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="8" r="0.8" fill="currentColor" stroke="none"/><circle cx="10" cy="8" r="0.8" fill="currentColor" stroke="none"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="sesterce.html">Sesterce</a>
           <span class="sig-icons">
@@ -440,7 +448,7 @@
             <svg viewBox="0 0 12 12"><path d="M4 2 L2 2 L2 10 L4 10"/></svg>
           </span>
         </li>
-
+ 
         <li>
           <a class="sig-name" href="dydx.html">dYdX</a>
           <span class="sig-icons">
@@ -449,17 +457,28 @@
             <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
           </span>
         </li>
-
+ 
+        <li>
+          <a class="sig-name" href="acier.html">ACIER</a>
+          <span class="sig-icons">
+            <svg viewBox="0 0 12 12"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+          </span>
+        </li>
+ 
+        <li>
+          <a class="sig-name" href="initiativ.html">Initiativ</a>
+          <span class="sig-icons">
+            <svg viewBox="0 0 12 12"><line x1="2" y1="10" x2="10" y2="2"/></svg>
+          </span>
+        </li>
+ 
       </ul>
     </section>
-
+ 
     <div class="divider"></div>
-
+ 
     <footer>
-      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-        <a class="contact-btn" href="mailto:marianne@bureaucobo.com">Contact</a>
-        <a class="contact-btn" href="/bureau-cobo-brief.html">feed the engine</a>
-      </div>
+      <a class="contact-btn" href="mailto:marianne@bureaucobo.com">Contact</a>
       <div class="footer-bottom">
         <nav class="cities" aria-label="Offices">
           <div class="cities-row">
@@ -480,7 +499,7 @@
       </div>
     </footer>
   </div>
-
+ 
   <script>
     function setMode(mode) {
       document.documentElement.setAttribute('data-theme', mode);
@@ -488,7 +507,7 @@
       document.getElementById('modeOverlay').classList.add('hidden');
       updateToggle(mode);
     }
-
+ 
     function toggleMode() {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
@@ -496,11 +515,11 @@
       localStorage.setItem('bc-theme', next);
       updateToggle(next);
     }
-
+ 
     function updateToggle(mode) {
       document.getElementById('modeToggle').textContent = mode === 'dark' ? '●' : '○';
     }
-
+ 
     // on load: check localStorage first, otherwise show modal
     const saved = localStorage.getItem('bc-theme');
     if (saved) {
@@ -510,6 +529,7 @@
     }
     // else modal stays visible
   </script>
-
+ 
 </body>
 </html>
+ 
